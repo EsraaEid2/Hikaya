@@ -37,7 +37,10 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
-
+    public function stories()
+    {
+        return $this->hasMany(Story::class, 'user_id', 'id');
+    }
     /**
      * The attributes that should be cast.
      *

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./ProfileContent.css";
 import axios from "axios";
 import UserStories from './userStories';
+import UserLikes from './userLikes';
 
 const ProfileContent = () => {
   const [selectedTab, setSelectedTab] = useState("completeStories"); // Default tab is 'Complete Stories'
@@ -40,7 +41,7 @@ const ProfileContent = () => {
     switch (selectedTab) {
       case "completeStories":
         return (
-          <div className={`timeline ${styles.timeline}`}>
+          <div>
             {completeStories.length > 0 ? (
               completeStories.map((story) => (
                 <li key={story.story_id}>
@@ -60,11 +61,7 @@ const ProfileContent = () => {
                 </li>
               ))
             ) : (
-              <div className="container container-cards">
-                <UserStories/>
-                <UserStories/>
-                <UserStories/>
-                <UserStories/>
+              <div className=" container container-cards">
                 <UserStories/>
               </div>
             )}
@@ -83,11 +80,7 @@ const ProfileContent = () => {
               ))
             ) : (
               <div className="container container-cards">
-              <UserStories/>
-              <UserStories/>
-              <UserStories/>
-              <UserStories/>
-              <UserStories/>
+              <UserLikes/>
             </div>
             )}
           </div>

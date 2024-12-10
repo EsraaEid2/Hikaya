@@ -59,4 +59,7 @@ Route::post('/stories/magic-ideas', [StoryController::class, 'getMagicIdea']);
 Route::post('/stories/{storyId}/toggle-like', [LikeController::class, 'toggleLike']);
 Route::get('/user-profile/{id}', [UserProfileController::class, 'getUserProfile']);
 Route::post('/edit-profile/{id}', [UserProfileController::class, 'updateUserProfile']);
-
+Route::get('/user/{id}/stories', [UserProfileController::class, 'getUserStories']);
+Route::delete('user/{userId}/stories/{storyId}', [UserProfileController::class, 'deleteStory']);
+Route::get('user/{userId}/liked-stories', [UserProfileController::class, 'getLikedStories']);
+Route::delete('user/{userId}/stories/{storyId}/remove-bookmark', [UserProfileController::class, 'removeBookmark']);

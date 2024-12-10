@@ -15,7 +15,17 @@ const StoriesList = ({ query, selectedCategories }) => {
     axios
       .get("http://localhost:8000/api/stories")
       .then((response) => {
-        setStories(response.data);
+        const fetchedStories = response.data;
+        
+        // Get liked stories from localStorage
+        const likedStories = JSON.parse(localStorage.getItem("likedStories")) || [];
+        
+        // Update stories with the persisted liked status
+        const updatedStories = fetchedStories.map((story) => {
+          return { ...story, liked: likedStories.includes(story.story_id) };
+        });
+
+        setStories(updatedStories);
       })
       .catch((error) => {
         console.error("There was an error fetching the stories!", error);
@@ -29,9 +39,22 @@ const StoriesList = ({ query, selectedCategories }) => {
           user_id: userId,
         })
         .then(() => {
+          // Update the local stories state
           const updatedStories = stories.map((story) => {
             if (story.story_id === storyId) {
-              return { ...story, liked: !story.liked };
+              const newLikedStatus = !story.liked;
+
+              // Save to local storage to persist the like status
+              const likedStories = JSON.parse(localStorage.getItem("likedStories")) || [];
+              if (newLikedStatus) {
+                likedStories.push(storyId);
+              } else {
+                const index = likedStories.indexOf(storyId);
+                if (index > -1) likedStories.splice(index, 1);
+              }
+              localStorage.setItem("likedStories", JSON.stringify(likedStories));  // Store in localStorage
+
+              return { ...story, liked: newLikedStatus };
             }
             return story;
           });
@@ -78,11 +101,10 @@ const StoriesList = ({ query, selectedCategories }) => {
                   </h1>
                  
                   <div className="postcard__subtitle small">
-                  <span dateTime={story.created_at}>
-                    <i className="fas fa-calendar-alt mr-2"></i>
-                  {story.created_at ? new Date(story.created_at).toLocaleDateString() : 'N/A'}
-                  </span>
-
+                    <span dateTime={story.created_at}>
+                      <i className="fas fa-calendar-alt mr-2"></i>
+                      {story.created_at ? new Date(story.created_at).toLocaleDateString() : 'N/A'}
+                    </span>
                   </div>
                   <div className="postcard__bar"></div>
                   <div
@@ -102,19 +124,16 @@ const StoriesList = ({ query, selectedCategories }) => {
                       </Link>
                     </li>
                   </ul>
-                   <span>
-        
-                      <button
-                        onClick={() => toggleLike(story.story_id)}
-                        className="btn btn-outline-danger btn-sm ml-2"
-                      >
-                        <i className={story.liked ? "fas fa-heart" : "far fa-heart"}></i>{" "}
-                        {story.liked ? "bookmarked" : "add to bookmark"}
-                      </button>
-                    
+                  <span>
+                    <button
+                      onClick={() => toggleLike(story.story_id)}
+                      className="btn btn-outline-danger btn-sm ml-2"
+                    >
+                      <i className={story.liked ? "fas fa-heart" : "far fa-heart"}></i>{" "}
+                      {story.liked ? "bookmarked" : "add to bookmark"}
+                    </button>
                   </span>
                 </div>
-                
               </article>
             </div>
           ))}

@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Like;
+use App\Models\Story;
 
 class UserProfileController extends Controller
 {
@@ -70,7 +72,64 @@ class UserProfileController extends Controller
     
         return response()->json(['message' => $old_image]);
     }
+
+    public function getUserStories($id)
+    {
+        
+        $user = User::find($id);
+
+        
+        if (!$user) {
+            return response()->json(['message' => 'User not found'], 404);
+        }
+
+        
+        $stories = $user->stories;
+
+        
+        return response()->json($stories);
+    }
+    public function deleteStory($userId, $storyId)
+    {
+        // Find the story by its ID and make sure it's associated with the correct user
+        $story = Story::where('user_id', $userId)->where('story_id', $storyId)->first();
+
+        if ($story) {
+            // Delete the story from the database
+            $story->delete();
+
+            return response()->json(['message' => 'Story deleted successfully.']);
+        }
+
+        return response()->json(['message' => 'Story not found or you are not authorized to delete it.'], 404);
+    }
     
-    
-    
+    public function getLikedStories($userId)
+    {
+        // Get all likes for the specific user
+        $likes = Like::where('user_id', $userId)->get();
+
+        // Extract the story_ids from the likes
+        $storyIds = $likes->pluck('story_id');
+
+        // Get the stories that the user has liked
+        $stories = Story::whereIn('story_id', $storyIds)->get();
+
+        // Return the stories (you can return as JSON or pass to a view)
+        return response()->json($stories);
+    }
+
+    public function removeBookmark($userId, $storyId)
+    {
+        // Find and delete the like record
+        $like = Like::where('user_id', $userId)->where('story_id', $storyId)->first();
+
+        if ($like) {
+            $like->delete();
+
+            return response()->json(['message' => 'Bookmark removed successfully.']);
+        }
+
+        return response()->json(['message' => 'Bookmark not found.'], 404);
+    }
 }
