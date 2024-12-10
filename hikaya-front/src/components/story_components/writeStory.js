@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect } from "react";
 import axios from "axios";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import Swal from "sweetalert2";
 import "./writeStory.css";
 import { useNavigate } from "react-router-dom";
+
 const WriteStory = () => {
   const [title, setTitle] = useState("");
   const [story, setStory] = useState("");
@@ -15,6 +16,21 @@ const WriteStory = () => {
   const [draftSaved, setDraftSaved] = useState(false);
   const [isMagicGenerating, setIsMagicGenerating] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      Swal.fire({
+        icon: "info",
+        title: "Login Required",
+        text: "Please log in to write a story.",
+        confirmButtonText: "Go to Login",
+      }).then(() => {
+        navigate("/login"); // Use navigate inside the component
+      });
+    }
+  }, [navigate]);
+  
   const quillModules = {
     toolbar: [
       [{ header: [1, 2, false] }],
