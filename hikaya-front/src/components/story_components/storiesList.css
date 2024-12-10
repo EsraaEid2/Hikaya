@@ -1,5 +1,5 @@
 .dark {
-	background: #1E293B;
+  background: #1E293B;
 }
 
 .btn {
@@ -7,34 +7,9 @@
   margin-top: 10px;
 }
 
-/* .card-title {
-  font-size: 1.25rem;
-  font-weight: bold;
-} */
-
-/* .card-text {
-  margin-bottom: 15px;
-} */
-
-/* 
-body {
-
-	font-size: 16px;
-	color: #ffffff;
-	text-rendering: optimizeLegibility;
-	font-weight: initial;
-} */
-
-/*#pageHeaderTitle {
-	margin: 2rem 0;
-	text-transform: uppercase;
-	text-align: center;
-	font-size: 2.5rem;
-} */
-
 a, a:hover {
-	text-decoration: none;
-	transition: color 0.3s ease-in-out;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
 }
 
 /* Cards */
@@ -47,47 +22,57 @@ a, a:hover {
   overflow: hidden;
   position: relative;
   color: #ffffff;
-  
-	&.dark {
-		background-color: #18151f;
-	}
-	&.light {
-		background-color: #e1e5ea;
-	}
-	
-	.t-dark {
-		color: #18151f;
-	}
-	
+
+  &.dark {
+    background-color: #18151f;
+  }
+  &.light {
+    background-color: #e1e5ea;
+  }
+
+  .t-dark {
+    color: #18151f;
+  }
+
   a {
     color: inherit;
   }
-	
-	h1,	.h1 {
-		margin-bottom: 0.5rem;
-		font-weight: 500;
-		line-height: 1.2;
-	}
-	
-	.small {
-		font-size: 80%;
-	}
+
+  h1, .h1 {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  .small {
+    font-size: 80%;
+  }
 
   .postcard__title {
     font-size: 1.75rem;
+    margin: 0;
   }
 
+  /* Image Styling */
   .postcard__img {
-    max-height: 180px;
-    width: 100%;
+    max-width: 100%;
+    height: 300px; /* Fixed height for consistency */
     object-fit: cover;
-    position: relative;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
   }
 
   .postcard__img_link {
     display: contents;
   }
 
+  /* Ensure that the title and bookmark button are aligned properly */
+.postcard__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
   .postcard__bar {
     width: 50px;
     height: 10px;
@@ -96,9 +81,40 @@ a, a:hover {
     background-color: #424242;
     transition: width 0.2s ease;
   }
+  .bookmark-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem;
+    font-size: 1.25rem;
+    color: #e53e3e;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  
+.bookmark-btn i {
+  transition: color 0.3s ease;
+}
+
+.bookmark-btn:hover i {
+  color: #ffffff;
+}
+
+/* Optionally, adjust the bookmark icon color when clicked */
+.bookmark-btn i.bi-bookmark-check {
+  color: #e53e3e; /* Filled bookmark color */
+}
+
+.bookmark-btn i.bi-bookmark {
+  color: #ccc; /* Empty bookmark color */
+}
+  /* .bookmark-btn:hover {
+    background-color: #e53e3e;
+    color: #ffffff;
+  } */
 
   .postcard__text {
-    padding: 1.5rem;
+    padding: 1rem;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -116,7 +132,7 @@ a, a:hover {
     flex-flow: row wrap;
     font-size: 14px;
     margin: 20px 0 0 0;
-		padding: 0;
+    padding: 0;
     justify-content: center;
 
     .tag__item {
@@ -152,6 +168,7 @@ a, a:hover {
   }
 }
 
+/* Responsive Design */
 @media screen and (min-width: 769px) {
   .postcard {
     flex-wrap: inherit;
@@ -208,29 +225,30 @@ a, a:hover {
     }
   }
 }
-@media screen and (min-width: 1024px){
-		.postcard__text {
-      padding: 2rem 3.5rem;
-    }
-		
-		.postcard__text:before {
-      content: "";
-      position: absolute;
-      display: block;
-      
-      top: -20%;
-      height: 130%;
-      width: 55px;
-    }
-	
-  .postcard.dark {
-		.postcard__text:before {
-			background: #18151f;
-		}
+
+@media screen and (min-width: 1024px) {
+  .postcard__text {
+    padding: 2rem 3.5rem;
   }
-	.postcard.light {
-		.postcard__text:before {
-			background: #e1e5ea;
-		}
+
+  .postcard__text:before {
+    content: "";
+    position: absolute;
+    display: block;
+    top: -20%;
+    height: 130%;
+    width: 55px;
+  }
+
+  .postcard.dark {
+    .postcard__text:before {
+      background: #18151f;
+    }
+  }
+
+  .postcard.light {
+    .postcard__text:before {
+      background: #e1e5ea;
+    }
   }
 }
