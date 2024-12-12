@@ -1,254 +1,288 @@
+/* General Styles */
 .dark {
-  background: #1E293B;
+  background: #1e293b;
 }
 
-.btn {
-  display: inline-block;
-  margin-top: 10px;
-}
-
-a, a:hover {
-  text-decoration: none;
-  transition: color 0.3s ease-in-out;
-}
-
-/* Cards */
 .postcard {
-  flex-wrap: wrap;
   display: flex;
+  flex-direction: column;
   box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.66);
   border-radius: 10px;
-  margin: 0 0 2rem 0;
+  margin-bottom: 20px;
   overflow: hidden;
-  position: relative;
   color: #ffffff;
+  background-color: #151e31;
+  position: relative;
+  transition: transform 0.3s ease-in-out;
+}
 
-  &.dark {
-    background-color: #18151f;
-  }
-  &.light {
-    background-color: #e1e5ea;
-  }
+/* .postcard:hover {
+  transform: translateY(-10px);
+} */
 
-  .t-dark {
-    color: #18151f;
-  }
+/* Image Styling */
+.postcard__img {
+  width: 100%;
+  height: 512px; /* Set fixed height for image */
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+  transition: transform 0.3s ease;
+}
 
-  a {
-    color: inherit;
-  }
+.postcard__img_link {
+  display: block;
+}
 
-  h1, .h1 {
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-    line-height: 1.2;
-  }
+.postcard__img:hover {
+  transform: scale(1.05);
+}
 
-  .small {
-    font-size: 80%;
-  }
+/* Text Section */
+.postcard__text {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;  /* Ensure text section takes full height */
+}
 
-  .postcard__title {
-    font-size: 1.75rem;
-    margin: 0;
-  }
-
-  /* Image Styling */
-  .postcard__img {
-    max-width: 100%;
-    height: 300px; /* Fixed height for consistency */
-    object-fit: cover;
-    border-radius: 10px;
-    transition: transform 0.3s ease;
-  }
-
-  .postcard__img_link {
-    display: contents;
-  }
-
-  /* Ensure that the title and bookmark button are aligned properly */
 .postcard__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
-  .postcard__bar {
-    width: 50px;
-    height: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
-    background-color: #424242;
-    transition: width 0.2s ease;
-  }
-  .bookmark-btn {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.5rem;
-    font-size: 1.25rem;
-    color: #e53e3e;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-  }
-  
+
+.postcard__title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #ffffff;
+  transition: color 0.3s ease;
+}
+
+.postcard__title:hover {
+  color: #4f93f0;
+}
+
+.bookmark-btn {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
 .bookmark-btn i {
   transition: color 0.3s ease;
 }
 
 .bookmark-btn:hover i {
-  color: #ffffff;
+  color: #e53e3e;
 }
 
-/* Optionally, adjust the bookmark icon color when clicked */
-.bookmark-btn i.bi-bookmark-check {
-  color: #e53e3e; /* Filled bookmark color */
+.postcard__subtitle {
+  font-size: 0.85rem;
+  color: #aaa;
 }
 
-.bookmark-btn i.bi-bookmark {
-  color: #ccc; /* Empty bookmark color */
+.postcard__bar {
+  width: 50px;
+  height: 5px;
+  background-color: #4f93f0;
+  margin: 10px 0;
+  border-radius: 5px;
 }
-  /* .bookmark-btn:hover {
-    background-color: #e53e3e;
-    color: #ffffff;
-  } */
+
+.postcard__preview-txt {
+  font-size: 1rem;
+  color: #e0e0e0;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.postcard__tagbox {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.tag__item {
+  background-color: #333;
+  padding: 5px 15px;
+  border-radius: 20px;  /* Slightly larger border radius for a softer look */
+  margin-right: 15px;   /* Increased margin for more spacing */
+  margin-bottom: 8px;   /* Increased bottom margin for better spacing */
+  font-size: 0.95rem;   /* Slightly larger font size */
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Added a subtle transform effect */
+}
+
+.tag__item:hover {
+  background-color: #4f93f0;
+  transform: translateY(-3px); /* Adds a lifting effect on hover */
+}
+
+.play.blue {
+  background-color: #4f93f0;  /* Re-enable blue background */
+  color: #fff;
+  padding: 8px 18px;           /* More padding for a more button-like appearance */
+  border-radius: 30px;         /* Rounded border with more curvature */
+  font-weight: bold;           /* Slightly bolder font weight */
+  transition: background-color 0.3s ease, transform 0.3s ease;  /* Added transform effect */
+}
+
+.play.blue:hover {
+  background-color: #3578e5;
+  transform: translateY(-3px);  /* Lift the button on hover for better interaction */
+}
+
+.play.blue i {
+  margin-right: 8px;  /* Increased spacing between the icon and text */
+}
+
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+  .postcard {
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
 
   .postcard__text {
-    padding: 1rem;
-    position: relative;
-    display: flex;
-    flex-direction: column;
+    padding: 15px;
+  }
+
+  .postcard__title {
+    font-size: 1.3rem;
+  }
+
+  .postcard__subtitle {
+    font-size: 0.8rem;
   }
 
   .postcard__preview-txt {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-align: justify;
-    height: 100%;
+    font-size: 0.95rem;
   }
 
-  .postcard__tagbox {
-    display: flex;
-    flex-flow: row wrap;
-    font-size: 14px;
-    margin: 20px 0 0 0;
-    padding: 0;
-    justify-content: center;
-
-    .tag__item {
-      display: inline-block;
-      background: rgba(83, 83, 83, 0.4);
-      border-radius: 3px;
-      padding: 2.5px 10px;
-      margin: 0 5px 5px 0;
-      cursor: default;
-      user-select: none;
-      transition: background-color 0.3s;
-
-      &:hover {
-        background: rgba(83, 83, 83, 0.8);
-      }
-    }
+  .bookmark-btn {
+    font-size: 1rem;
   }
 
-  &:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-image: linear-gradient(-70deg, #424242, transparent 50%);
-    opacity: 1;
-    border-radius: 10px;
+  .tag__item {
+    font-size: 0.8rem;
+    padding: 5px 10px;
   }
 
-  &:hover .postcard__bar {
-    width: 100px;
+  .play.blue {
+    font-size: 0.9rem;
+    padding: 6px 12px;
   }
 }
 
-/* Responsive Design */
-@media screen and (min-width: 769px) {
-  .postcard {
-    flex-wrap: inherit;
-
-    .postcard__title {
-      font-size: 2rem;
-    }
-
-    .postcard__tagbox {
-      justify-content: start;
-    }
-
-    .postcard__img {
-      max-width: 300px;
-      max-height: 100%;
-      transition: transform 0.3s ease;
-    }
-
-    .postcard__text {
-      padding: 3rem;
-      width: 100%;
-    }
-
-    .media.postcard__text:before {
-      content: "";
-      position: absolute;
-      display: block;
-      background: #18151f;
-      top: -20%;
-      height: 130%;
-      width: 55px;
-    }
-
-    &:hover .postcard__img {
-      transform: scale(1.1);
-    }
-
-    &:nth-child(2n+1) {
-      flex-direction: row;
-    }
-
-    &:nth-child(2n+0) {
-      flex-direction: row-reverse;
-    }
-
-    &:nth-child(2n+1) .postcard__text::before {
-      left: -12px !important;
-      transform: rotate(4deg);
-    }
-
-    &:nth-child(2n+0) .postcard__text::before {
-      right: -12px !important;
-      transform: rotate(-4deg);
-    }
+@media screen and (max-width: 767px) {
+  .postcard__img {
+    height: 200px; /* Adjust image size on smaller screens */
   }
-}
 
-@media screen and (min-width: 1024px) {
+  .postcard__title {
+    font-size: 1.2rem;
+  }
+
   .postcard__text {
-    padding: 2rem 3.5rem;
+    padding: 10px;
   }
 
-  .postcard__text:before {
-    content: "";
-    position: absolute;
-    display: block;
-    top: -20%;
-    height: 130%;
-    width: 55px;
+  .postcard__subtitle {
+    font-size: 0.75rem;
   }
 
-  .postcard.dark {
-    .postcard__text:before {
-      background: #18151f;
-    }
+  .postcard__preview-txt {
+    font-size: 0.9rem;
   }
 
-  .postcard.light {
-    .postcard__text:before {
-      background: #e1e5ea;
-    }
+  .bookmark-btn {
+    font-size: 0.9rem;
   }
+
+  .tag__item {
+    font-size: 0.7rem;
+    padding: 4px 8px;
+  }
+
+  .play.blue {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+  }
+}
+
+/* Additional Styling */
+.postcard__img {
+  border-radius: 10px 10px 0 0;
+}
+
+.postcard__text {
+  position: relative;
+  padding: 20px;
+  background-color: #2d3748;
+  color: #ffffff;
+  border-radius: 0 0 10px 10px;
+}
+
+.postcard__header {
+  margin-bottom: 15px;
+}
+
+.postcard__header h1 {
+  font-size: 1.75rem;
+}
+.bookmark-btn {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.bookmark-btn i {
+  transition: color 0.3s ease;
+  font-size: 1.5rem; 
+}
+
+.bookmark-btn:hover i {
+  color: #e53e3e;
+}
+.bookmark-btn.liked i {
+  color: #e53e3e;  /* Make the icon red when liked */
+}
+
+
+
+/* Hover effect */
+.postcard:hover .postcard__img {
+  transform: scale(1.05);
+}
+
+.postcard:hover .postcard__title {
+  color: #4f93f0;
+}
+
+.postcard:hover .postcard__bar {
+  background-color: #4f93f0;
+}
+
+/* Category Styles */
+.tag__item {
+  background-color: #333;
+  padding: 5px 15px;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+.tag__item:hover {
+  background-color: #4f93f0;
 }

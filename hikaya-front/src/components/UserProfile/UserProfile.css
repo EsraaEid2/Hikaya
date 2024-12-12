@@ -67,6 +67,24 @@ body{
   color: #fff
 }
 
+.authLink {
+  display: inline-block;
+  padding: 6px 12px;
+  border: 1px solid #60a5fa; /* Light blue border for links */
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 8px;
+  background-color: #60a5fa; /* Light blue background for links */
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.authLink:hover {
+  background-color: #a78bfa; /* Purple color on hover */
+  border-color: #a78bfa; /* Matching border color on hover */
+}
 .profile-header-img+.profile-header-info {
   margin-left: 140px
 }

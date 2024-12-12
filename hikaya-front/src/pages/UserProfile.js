@@ -82,7 +82,7 @@ const UserProfile = () => {
                         {user.bio || "No bio"}
                       </p>
                       <button
-                        className="btn btn-primary"
+                        className="btn authLink"
                         onClick={() => navigate("/edit-profile")}
                       >
                         Edit Profile

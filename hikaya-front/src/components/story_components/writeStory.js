@@ -1,11 +1,11 @@
-import React, { useState ,useEffect } from "react";
+import React, { useState, useEffect } from "react";
+
 import axios from "axios";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import Swal from "sweetalert2";
 import "./writeStory.css";
 import { useNavigate } from "react-router-dom";
-
 const WriteStory = () => {
   const [title, setTitle] = useState("");
   const [story, setStory] = useState("");
@@ -23,14 +23,14 @@ const WriteStory = () => {
       Swal.fire({
         icon: "info",
         title: "Login Required",
-        text: "Please log in to write a story.",
+        text: "Please log in to share your story!",
         confirmButtonText: "Go to Login",
       }).then(() => {
         navigate("/login"); // Use navigate inside the component
       });
     }
   }, [navigate]);
-  
+
   const quillModules = {
     toolbar: [
       [{ header: [1, 2, false] }],
@@ -207,7 +207,7 @@ const WriteStory = () => {
     if (!title || !category || !story) {
       Swal.fire({
         icon: "error",
-        title: "Failed to Save Draft",
+        title: "Failed to publish Story",
         text: "Please fill in all required fields before saving the draft.",
       });
       return;
@@ -235,8 +235,8 @@ const WriteStory = () => {
       setDraftSaved(true);
       Swal.fire({
         icon: "success",
-        title: "Draft Published!",
-        text: "Your draft has been published successfully.",
+        title: "Story Published!",
+        text: "Your story has been published successfully.",
         timer: 2000,
         timerProgressBar: true,
         willClose: () => {
@@ -247,8 +247,8 @@ const WriteStory = () => {
       console.error("Error saving draft:", error);
       Swal.fire({
         icon: "error",
-        title: "Error Saving Draft",
-        text: "Something went wrong while saving your draft.",
+        title: "Error Saving Story",
+        text: "Something went wrong while saving your story.",
       });
     } finally {
       setIsSaving(false);

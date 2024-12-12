@@ -13,22 +13,6 @@ body {
   margin-bottom: 20px;
 }
 
-/* Header Section Styling */
-#header {
-  background: linear-gradient(
-      rgba(0, 0, 0, 0.5),
-      rgba(0, 0, 0, 0.5)
-    ),
-    url("https://images.unsplash.com/photo-1415795854641-f4a487a0fdc8?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80")
-      center center / cover no-repeat;
-  color: #fff;
-  text-align: center;
-  padding: 80px 20px;
-  border-radius: 8px;
-  margin-bottom: 40px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
 #header h1 {
   font-size: 3rem;
   font-weight: bold;
@@ -39,29 +23,37 @@ body {
   font-size: 1.5rem;
   margin-bottom: 30px;
   letter-spacing: 1px;
-  color: #d4d4d4;
+  color: white;
 }
 
-/* Buttons in Header */
-#header .submitButton {
+#header .submitButton, 
+#submitExpButton {
   display: inline-block;
-  padding: 12px 24px;
+  padding: 8px 16px;
   margin: 5px;
-  font-size: 16px;
+  margin-bottom: 1rem;
+  font-size: 14px; /* Smaller font size */
   font-weight: bold;
   color: white;
   background: #60a5fa;
   border: 1px solid #60a5fa;
   border-radius: 5px;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease, opacity 0.3s ease; /* Smooth transitions */
   text-decoration: none;
+}
+#submitExpButton {
+  color: #162032; /* Different text color for contrast */
+  background: white;
+}
+#submitExpButton:hover {
+  opacity: 0.8; 
+  box-shadow: 0 6px 15px rgba(96, 165, 250, 0.2); /* Enhanced shadow on hover */
 }
 
 #header .submitButton:hover {
   background: #a78bfa;
   border-color: #a78bfa;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(167, 139, 250, 0.4);
+  box-shadow: 0 4px 10px rgba(167, 139, 250, 0.4); /* Slightly reduced shadow */
 }
 
 /* Footer Section */
@@ -98,9 +90,9 @@ footer a:hover {
   #header p {
     font-size: 1.2rem;
   }
-
-  .submitButton {
-    font-size: 14px;
-    padding: 10px 20px;
+  #header .submitButton, 
+  #submitExpButton {
+    font-size: 12px; /* Smaller font for mobile */
+    padding: 6px 12px; /* Compact padding for smaller devices */
   }
 }

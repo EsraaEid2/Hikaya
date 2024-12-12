@@ -70,7 +70,7 @@ body {
 
 .nav-link {
     position: relative;
-    color: #94a3b8;
+    color: white;
     text-decoration: none;
     font-size: 0.95rem;
     padding: 0.5rem 1rem;
@@ -79,8 +79,19 @@ body {
     letter-spacing: 0.5px;
 }
 
-.nav-link:hover,
+/* Active Link Styles */
 .nav-link.active {
+    color: #60a5fa; /* Light blue color for the active link */
+    background-color: rgba(96, 165, 250, 0.1); /* Light background for active state */
+    border-radius: 0.5rem;
+}
+
+.nav-link.active:hover {
+    color: #fff; /* Ensure color remains white on hover */
+    background-color: rgba(96, 165, 250, 0.2); /* Darken the background on hover */
+}
+
+.nav-link:hover {
     color: white;
 }
 
@@ -183,7 +194,9 @@ body {
     .nav-links {
         display: none;
     }
-
+    .nav-links.active {
+        display: flex;
+    }
     .mobile-toggle {
         display: block;
     }

@@ -173,11 +173,11 @@ const Footer = () => {
       <div className="footer-bottom">
         <div className="container">
           <p>
-            © {currentYear} All rights reserved by the Hikaya team{" "}
-            <span className="logo-text">Hikaya</span>.{" "}
-            <span className="extra-text">
+            © {currentYear} All rights reserved by the <span className="logo-text">Hikaya</span>{" "} team{" "}
+           
+            {/* <span className="extra-text">
               Powered by Innovation and Creativity.
-            </span>
+            </span> */}
           </p>
         </div>
       </div>
